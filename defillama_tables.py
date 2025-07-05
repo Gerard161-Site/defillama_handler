@@ -266,9 +266,10 @@ class StablecoinsTable(APITable):
         
         response = self.handler.call_defillama_api(endpoint)
         
-        if response and 'stablecoins' in response:
+        # FIXED: Stablecoins API returns 'peggedAssets' not 'stablecoins'
+        if response and 'peggedAssets' in response:
             rows = []
-            for stablecoin in response['stablecoins']:
+            for stablecoin in response['peggedAssets']:
                 # Filter by conditions
                 if stablecoin_id and str(stablecoin.get('id')) != str(stablecoin_id):
                     continue

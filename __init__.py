@@ -15,7 +15,28 @@ name = "defillama"
 type = HANDLER_TYPE.DATA
 icon_path = "icon.svg"
 
+# Enhanced metadata for MindsDB documentation system
+permanent = True
+author = "XplainCrypto Platform"
+github_url = "https://github.com/xplaincrypto/mindsdb-handlers"
+docs_url = "https://defillama.com/"
+connection_args_example = {
+    "base_url": "https://api.llama.fi"
+}
+
+# Handler capabilities
+supports_select = True
+supports_insert = False
+supports_update = False
+supports_delete = False
+
+# Categories and tags for discovery
+category = "cryptocurrency"
+keywords = ["defi", "tvl", "yields", "protocols", "stablecoins", "cryptocurrency"]
+
 __all__ = [
     "Handler", "version", "name", "type", "title", "description",
-    "connection_args", "connection_args_example", "import_error", "icon_path"
+    "connection_args", "connection_args_example", "import_error", "icon_path",
+    "permanent", "author", "github_url", "docs_url", "supports_select",
+    "category", "keywords"
 ] 

@@ -109,7 +109,20 @@ class DeFiLlamaHandler(APIHandler):
         Returns:
             API response data
         """
-        url = self.base_url + endpoint
+        # FIXED: Use correct subdomain based on endpoint
+        if endpoint == '/yields':
+            base_url = 'https://yields.llama.fi'
+            url = base_url + '/pools'  # yields endpoint uses /pools
+        elif endpoint == '/stablecoins':
+            base_url = 'https://stablecoins.llama.fi'
+            url = base_url + endpoint
+        elif endpoint.startswith('/prices/'):
+            base_url = 'https://coins.llama.fi'
+            url = base_url + endpoint
+        else:
+            # Use main API for protocols, chains, charts, etc.
+            base_url = 'https://api.llama.fi'
+            url = base_url + endpoint
         
         try:
             response = requests.get(url, headers=self.headers, params=params or {})
